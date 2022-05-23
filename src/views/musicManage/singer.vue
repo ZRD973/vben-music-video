@@ -22,9 +22,9 @@
       class="singerTable"
     >
 
-      <!-- <template #img_path="{row}">
+      <template #img_path="{row}">
         <Image :width="80" :src="row.img_path || headerImg"/>
-      </template> -->
+      </template>
 
       <template #intro="{row}">
         <div class="intro" :title="row.intro" @click="handleExpand(row.intro)">{{row.intro}}</div>
@@ -97,7 +97,7 @@
     },
     column: [
       { type: 'index', Index:true, label: '序号', align: 'center', width: 65, fixed: 'left'},
-      // { prop: 'img_path', label: '照片', align: 'center', width: 150, fixed: 'left', slotScope: true },
+      { prop: 'img_path', label: '照片', align: 'center', width: 150, fixed: 'left', slotScope: true },
       { prop: 'name', label: '名字', align: 'center', width:150, fixed: 'left' },
       { prop: 'intro', label: '简介', align: 'center',  fixed: 'left', slotScope: true },
       { prop: 'toolBar', label: '操作', width: 180, align: 'center', fixed: 'right', slotScope: true },
