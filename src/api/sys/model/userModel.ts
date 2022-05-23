@@ -18,6 +18,8 @@ export interface LoginResultModel {
   userId: string | number;
   token: string;
   role: RoleInfo;
+  success:boolean;
+  message:string;
 }
 
 /**
@@ -36,7 +38,6 @@ export interface GetUserInfoModel {
   // 介绍
   desc?: string;
   result:Result;
-  origin:string;
 }
 /**
  * 响应模型
@@ -61,7 +62,6 @@ export interface Result {
   role: number;
   sex:string;
   updated_at: string;
-  origin:string;
   roles:RoleInfo[];
   result:Result;
   userId:number; 

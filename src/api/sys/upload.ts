@@ -24,6 +24,7 @@ export function uploadVideoToObsApi( params: UploadFileParams, onUploadProgress:
   return defHttp.uploadFile<UploadApiResult>(
     {
       url: '/video/upload',
+      timeout:10 * 10000,
       onUploadProgress,
     },
     params,

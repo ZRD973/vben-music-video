@@ -1,0 +1,4 @@
+// EventBus 事件名
+const CLOSECAROUSEL = 'CLOSECAROUSEL'; //关闭轮播图
+const CLOSESCREEN = 'CLOSESCREEN'; //关闭筛选
+export  { CLOSECAROUSEL, CLOSESCREEN }

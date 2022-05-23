@@ -43,7 +43,6 @@ export interface UserInfo {
   phone: string;
   role: number;
   sex:string;
-  origin:string;
   result:Result;
   roles:RoleInfo[];
   userId:number; 

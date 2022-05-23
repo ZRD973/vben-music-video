@@ -10,7 +10,7 @@ const dashboard: AppRouteModule = {
   redirect: '/usermanage/index',
   meta: {
     hideChildrenInMenu: true,
-    icon: 'simple-icons:about-dot-me',
+    icon: 'ic:round-supervised-user-circle',
     title: t('用户管理'),
     orderNo: 1,
     roles: [RoleEnum.SUPER],
@@ -22,7 +22,7 @@ const dashboard: AppRouteModule = {
       component: () => import('/@/views/userManage/index.vue'),
       meta: {
         title: t('用户管理'),
-        icon: 'simple-icons:about-dot-me',
+        icon: 'ic:round-supervised-user-circle',
         hideMenu: true,
       },
     },

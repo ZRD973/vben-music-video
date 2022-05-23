@@ -143,8 +143,6 @@
           description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.name}`,
           duration: 3,
         });
-      }else{
-        message.error("账号或密码不正确，请重新输入！", 2.5)
       }
     } catch (error) {
       createErrorModal({

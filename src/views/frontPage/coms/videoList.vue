@@ -3,10 +3,18 @@
   <div class="card-wrap" v-if="videoList?.length">
     <Card hoverable style="width: 240px" v-for="item in videoList" @click="handleOpenVideo(item)">
       <template #cover>
-        <img alt="example" :src="item.url" />
+        <!-- <img alt="example" :src="item.cover_url" /> -->
+        <video class="video" :src="item.video_url"></video>
       </template>
       <CardMeta :title="item.title">
-        <template #description>{{ item.author }}</template>
+        <template #description>
+          <div class="card-wrap-botom">
+              <span class="first">{{ item.singer.length?item.singer[0].name:"未知"}}</span>
+              <span>{{item.type}}</span>
+              <span>{{item.area}}</span>
+              <span>{{item.style}}</span>
+            </div>
+        </template>
       </CardMeta>
     </Card>
   </div>
@@ -33,8 +41,12 @@
   });
   const router = useRouter();
   const handleOpenVideo = (item) =>{
-    console.log(item);
-    router.push(`video${item.id}`)
+    router.push({
+      path:`video`,
+      query:{
+        id:item.id
+      }
+    })
   }
 
 </script>
@@ -43,6 +55,18 @@
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
+    .card-wrap-botom{
+      display: flex;
+      justify-content: space-between;
+      .first{
+        display: block;
+        max-width: 140px;
+        height: 22px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
   }
   :deep(.ant-card) {
     box-sizing: border-box;
@@ -71,9 +95,12 @@
   :deep(.ant-card-cover) {
     // width: 260px;
     // height: 208px;
-    // max-height: 208px;
+    // max-height: 153px;
     // display: table-cell;
     // vertical-align: middle;
+    .video{
+      max-height: 153px;
+    }
     img {
       width: 100%;
       height: 100%;

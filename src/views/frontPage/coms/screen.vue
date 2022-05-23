@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
   import { onMounted, ref } from 'vue';
-  import { StaticScreenItem }  from '/@/../types/views';
+  import { StaticScreenItem }  from '/#/views';
   
   const props = defineProps({
     staticScreen:{
@@ -56,6 +56,7 @@
     border-radius: 4px;
     background-color: #f8f8f8;
     word-break: break-all;
+    margin-bottom: 10px;
     .screen_line {
       color: #666;
       padding: 0;

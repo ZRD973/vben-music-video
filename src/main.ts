@@ -2,6 +2,7 @@ import '/@/design/index.less';
 import 'virtual:windi-base.css';
 import 'virtual:windi-components.css';
 import 'virtual:windi-utilities.css';
+import 'element-plus/dist/index.css'
 // Register icon sprite
 import 'virtual:svg-icons-register';
 import App from './App.vue';
@@ -14,6 +15,8 @@ import { setupStore } from '/@/store';
 import { setupGlobDirectives } from '/@/directives';
 import { setupI18n } from '/@/locales/setupI18n';
 import { registerGlobComp } from '/@/components/registerGlobComp';
+import ElementPlus from 'element-plus'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 // Importing on demand in local development will increase the number of browser requests by around 20%.
 // This may slow down the browser refresh speed.
 // Therefore, only enable on-demand importing in production environments .
@@ -51,6 +54,8 @@ async function bootstrap() {
 
   // https://next.router.vuejs.org/api/#isready
   // await router.isReady();
+  // const prototype = app.config.globalProperties;
+  app.use(ElementPlus,{ locale: zhCn })
   app.mount('#app');
 }
 

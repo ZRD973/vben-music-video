@@ -16,7 +16,7 @@ import { RouteRecordRaw } from 'vue-router';
 import { PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic';
 import { isArray } from '/@/utils/is';
 import { h } from 'vue';
-
+import { message as Message } from 'ant-design-vue';
 interface UserState {
   userInfo: Nullable<UserInfo>;
   token?: string;
@@ -91,7 +91,11 @@ export const useUserStore = defineStore({
       try {
         const { goHome = true, mode, ...loginParams } = params;
         const data = await loginApi(loginParams, mode);
-        const { token } = data;
+        const { token, success, message } = data;
+        if(!success){
+          Message.error(message, 2.5);
+          return null;
+        }
         // save token
         this.setToken(token);
         return this.afterLoginAction(goHome);
@@ -125,7 +129,6 @@ export const useUserStore = defineStore({
       if (!this.getToken) return null;
       const userInfoData = await getUserInfo();
       const userInfo = userInfoData.result;
-      userInfo.origin = userInfoData.origin;
       if(userInfo.role === 1){
         userInfo.roles = [
           {

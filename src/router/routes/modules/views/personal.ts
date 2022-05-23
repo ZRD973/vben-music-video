@@ -8,7 +8,8 @@ import { RoleEnum } from '/@/enums/roleEnum';
 const personal: AppRouteModule = {
   path: '/personal',
   name: 'Personal',
-  component: () => import('/@/views/account/center/index.vue'),
+  component:LAYOUT,
+  // component: () => import('/@/views/account/center/index.vue'),
   redirect: '/personal/center',
   meta: {
     orderNo: 20,
@@ -23,6 +24,14 @@ const personal: AppRouteModule = {
           component: () => import('/@/views/account/center/index.vue'),
           meta: {
             title: t('个人中心'),
+          },
+        },
+        {
+          path: 'setting',
+          name: 'AccountSettingPage',
+          component: () => import('/@/views/account/setting/index.vue'),
+          meta: {
+            title: t('个人设置'),
           },
         },
       ],

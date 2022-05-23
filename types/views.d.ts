@@ -1,7 +1,11 @@
 export interface VideoListItem{
-  url:string;
+  cover_url:string;
+  video_url:string;
   title:string;
-  author:string;
+  singer:Array;
+  style:string;
+  area:string;
+  type:string;
 }
 
 export interface StaticScreenItem{
@@ -19,3 +23,45 @@ export interface EmitCarouselObj{
   isShowScreen?:boolean;
   index:number;
 }
+
+export interface MyTableColumn{
+  type?: string;
+  prop?:string;
+  label?: string; 
+  align?: string; 
+  width?: number, 
+  fixed?: string;
+  slotScope?:boolean;
+}
+export interface MyTableData{
+  id: number;
+  author?: string;
+  title?: string;
+  intro?: string;
+  video_url?: string;
+  cover_url?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface MyTableProps{
+  total?:number,
+  data: MyTableData[],
+  columnsProps?: object;
+  column: MyTableColumn[];
+}
+
+export interface RankItem{
+  area: string,
+  cover_url: string,
+  created_at: string,
+  id: number,
+  intro: string,
+  style: string,
+  title: string,
+  type: string,
+  updated_at: string,
+  video_url: string,
+  heat:number
+}
+

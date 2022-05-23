@@ -10,8 +10,9 @@ const dashboard: AppRouteModule = {
   redirect: '/dashboard/analysis',
   meta: {
     orderNo: 40,
-    icon: 'ion:grid-outline',
+    icon: 'ant-design:bar-chart-outlined',
     title: t('数据面板'),
+    hideMenu: true,
   },
   children: [
     {

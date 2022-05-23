@@ -74,8 +74,8 @@
       const { getShowDoc, getUseLockPage } = useHeaderSetting();
       const userStore = useUserStore();
       const getUserInfo = computed(() => {
-        const { realName = '', origin, avatar, desc } = userStore.getUserInfo || {};
-        return { realName, avatar: origin + avatar || headerImg, desc };
+        const { realName = '', avatar, desc } = userStore.getUserInfo || {};
+        return { realName, avatar: avatar || headerImg, desc };
       });
 
       const [register, { openModal }] = useModal();

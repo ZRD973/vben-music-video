@@ -12,7 +12,7 @@
 <script lang="ts" setup>
   import { onMounted, reactive, ref } from 'vue';
   import Bus from '/@/utils/bus';
-  import { CLOSECAROUSEL, CLOSESCREEN } from '../../constant ';
+  import { CLOSECAROUSEL, CLOSESCREEN } from '../../constant';
   import { EmitCarouselObj } from '/@/../types/views'
   const subMenuData = reactive({
     subMenu: ref<string[]>(['音乐精选', '音乐片库', '其他音乐']),

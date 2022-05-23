@@ -3,7 +3,7 @@
     <a-row :class="`${prefixCls}-top`">
       <a-col :span="9" :class="`${prefixCls}-col`">
         <a-row>
-          <a-col :span="6">
+          <a-col :span="7">
             <div :class="`${prefixCls}-top__avatar`">
               <img width="70" :src="avatar" />
               <span>{{userInfo?.name}}</span>
@@ -20,13 +20,13 @@
               </template>
             </div>
           </a-col>
-          <a-col :span="8">
+          <a-col :span="7">
             <div :class="`${prefixCls}-top__detail`">
               <a-button type="primary" @click="go('/personal/setting')">编辑个人信息</a-button>
             </div>
-            <div :class="`${prefixCls}-top__detail`">
+            <!-- <div :class="`${prefixCls}-top__detail`">
               <a-button type="primary" @click="go('/dashboard')">查看个人分析</a-button>
-            </div>
+            </div> -->
           </a-col>
         </a-row>
       </a-col>
@@ -48,16 +48,16 @@
         </CollapseContainer>
       </a-col>
     </a-row>
-    <div :class="`${prefixCls}-bottom`">
-      <Analysis></Analysis>
+    <!-- <div :class="`${prefixCls}-bottom`"> -->
+      <!-- <Analysis></Analysis> -->
       <!-- <Tabs>
         <template v-for="item in achieveList" :key="item.key">
           <TabPane :tab="item.name">
             <component :is="item.component" />
           </TabPane>
         </template> 
-      </Tabs>-->
-    </div>
+      </Tabs> -->
+    <!-- </div> -->
   </div>
 </template>
 
@@ -70,7 +70,6 @@
   import Article from './Article.vue';
   import Application from './Application.vue';
   import Project from './Project.vue';
-
   import headerImg from '/@/assets/images/header.jpg';
   import { tags, teams, details, achieveList } from './data';
   import { useUserStore } from '/@/store/modules/user';
@@ -97,8 +96,8 @@
       console.log(userInfo);
       
       const avatar = computed(() =>{
-        const {origin ,avatar} = userStore.getUserInfo;
-         return origin + avatar || headerImg
+        const {avatar} = userStore.getUserInfo;
+         return avatar || headerImg
       });
       return {
         prefixCls: 'account-center',

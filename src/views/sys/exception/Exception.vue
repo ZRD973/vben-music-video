@@ -5,7 +5,7 @@
   import { ExceptionEnum } from '/@/enums/exceptionEnum';
   import notDataSvg from '/@/assets/svg/no-data.svg';
   import netWorkSvg from '/@/assets/svg/net-error.svg';
-  import { useRoute } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useGo, useRedo } from '/@/hooks/web/usePage';
@@ -46,7 +46,7 @@
     },
     setup(props) {
       const statusMapRef = ref(new Map<string | number, MapValue>());
-
+      const router = useRouter();
       const { query } = useRoute();
       const go = useGo();
       const redo = useRedo();
@@ -64,7 +64,7 @@
       });
 
       const backLoginI18n = t('sys.exception.backLogin');
-      const backHomeI18n = t('sys.exception.backHome');
+      const backHomeI18n = t('sys.exception.backPre');
 
       unref(statusMapRef).set(ExceptionEnum.PAGE_NOT_ACCESS, {
         title: '403',
@@ -79,7 +79,8 @@
         status: `${ExceptionEnum.PAGE_NOT_FOUND}`,
         subTitle: t('sys.exception.subTitle404'),
         btnText: props.full ? backLoginI18n : backHomeI18n,
-        handler: () => (props.full ? go(PageEnum.BASE_LOGIN) : go()),
+        // handler: () => (props.full ? go(PageEnum.BASE_LOGIN) : go()),
+        handler: () => (props.full ? go(PageEnum.BASE_LOGIN) : router.go(-1)),
       });
 
       unref(statusMapRef).set(ExceptionEnum.ERROR, {

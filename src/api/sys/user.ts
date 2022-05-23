@@ -49,8 +49,8 @@ export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') 
 export function getUserInfo() {
   return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }, { errorMessageMode: 'none' });
 }
-export function getAllUser() {
-  return defHttp.get<GetUserInfoModel>({ url: Api.AllUser }, { errorMessageMode: 'none' });
+export function getAllUser(params) {
+  return defHttp.get<GetUserInfoModel>({ url: Api.AllUser ,params}, { errorMessageMode: 'none' });
 }
 export function editUserInfo(params) {
   return defHttp.post<ResponeModel>({ url: Api.EditUserInfo, params }, { errorMessageMode: 'none' });

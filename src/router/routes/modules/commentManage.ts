@@ -11,10 +11,11 @@ const dashboard: AppRouteModule = {
   redirect: '/comment/index',
   meta: {
     hideChildrenInMenu: true,
-    icon: 'simple-icons:about-dot-me',
+    icon: 'bx:comment-detail',
     title: t('评论管理'),
     orderNo: 30,
     roles: [RoleEnum.SUPER],
+    hideMenu: true,
   },
   children: [
     {
@@ -23,7 +24,7 @@ const dashboard: AppRouteModule = {
       component: () => import('/@/views/commentManage/index.vue'),
       meta: {
         title: t('评论'),
-        icon: 'simple-icons:about-dot-me',
+        icon: 'bx:comment-detail',
         hideMenu: true,
       },
     },

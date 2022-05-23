@@ -4,7 +4,8 @@
       <navbar></navbar>
     </div>
     <div class="content">
-        <RouterView/>
+      <!-- <keep-alive></keep-alive> -->
+        <RouterView v-if="isRouterAlive" />
     </div>
     <div class="footer">
       <myfooter></myfooter>
@@ -23,6 +24,17 @@ export default{
 import GoTop from './coms/GoTop.vue';
 import navbar from './coms/navbar.vue';
 import myfooter from './coms/footer.vue';
+import { ref, provide, nextTick } from 'vue';
+
+const isRouterAlive = ref(true);
+const reload = () =>{
+  isRouterAlive.value = false
+  nextTick(()=>{
+    isRouterAlive.value = true;
+  })
+}
+provide('reload', reload);
+
 </script>
 <style lang="less" scoped>
 .content{

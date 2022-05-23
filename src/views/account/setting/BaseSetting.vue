@@ -15,6 +15,7 @@
             @change="updateAvatar"
             width="150"
           />
+            <!-- :value="avatar" -->
         </div>
       </a-col>
     </a-row>
@@ -63,8 +64,8 @@
       });
 
       const avatar = computed(() => {
-         const {origin ,avatar} = userStore.getUserInfo;
-         return origin + avatar || headerImg
+         const {avatar} = userStore.getUserInfo;
+         return avatar || headerImg
       });
       function updateAvatar({ data } ) {
         userinfo.avatar = data.file;

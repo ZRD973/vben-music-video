@@ -107,8 +107,8 @@
   }
 
   const avatar = computed(() => {
-      const {origin ,avatar} = userinfo;
-      return origin + avatar || headerImg;
+      const { avatar } = userinfo;
+      return avatar || headerImg;
   });
 
 

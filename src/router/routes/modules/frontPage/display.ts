@@ -46,6 +46,22 @@ const dashboard: AppRouteModule = {
       },
     },
     {
+      path: 'search',
+      name: 'searchPage',
+      component: () => import('/@/views/frontPage/search.vue'),
+      meta: {
+        title: t('搜索'),
+      },
+    },
+    {
+      path: 'pandas',
+      name: 'dataAnalysisPage',
+      component: () => import('/@/views/frontPage/dataAnalysis.vue'),
+      meta: {
+        title: t('数据分析'),
+      },
+    },
+    {
       path: 'video:path(.*)',
       name: 'videoPage',
       component: () => import('/@/views/frontPage/video.vue'),

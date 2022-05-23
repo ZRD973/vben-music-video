@@ -1,13 +1,14 @@
 <template>
   <div class="wrap">
+    <!-- <el-button v-if="route.path == '/display/video'" type="warning" size="small" style="position: absolute; left: 0; top: 20px;" @click="$router.go(-1)">{{"<返回"}}</el-button> -->
     <div class="content">
       <div @click="goHome">
         <div class="logo"></div>
-        <div class="title">流行音乐视频</div>
+        <div class="title">大学生流行音乐视频推荐</div>
       </div>
       <ul class="menu">
-        <li :class="{ active: navbarMenu.menuIndex == index }"
-          v-for="(item, index) in navbarMenu.menu"
+        <li v-for="(item, index) in navbarMenu.menu"
+          :class="{ active: navbarMenu.menuIndex == index }"
           @click="navbarMenu.changeMenu(item, index)"
           >{{ item.title }}</li>
       </ul>
@@ -33,6 +34,11 @@
               <ControlOutlined />
               管理平台
             </MenuItem>
+            <MenuItem key="pandas">
+              <!-- <PoweroffOutlined /> -->
+              <Icon icon="icon-park-outline:market-analysis" />
+              数据分析
+            </MenuItem>
             <MenuItem key="logout">
               <PoweroffOutlined />
               退出系统
@@ -48,10 +54,12 @@
   import { PageEnum } from '/@/enums/pageEnum';
   import { Dropdown, Menu, MenuItem } from 'ant-design-vue';
   import { UserOutlined, PoweroffOutlined, ControlOutlined } from '@ant-design/icons-vue';
-  import { onMounted, reactive, ref, computed } from 'vue';
+  import { onMounted, reactive, ref, computed, watch } from 'vue';
   import { useUserStore } from '/@/store/modules/user';
   import headerImg from '/@/assets/images/header.jpg';
-  import { useRoute } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
+  import { ElMessage } from 'element-plus';
+  import { Icon } from '/@/components/Icon';
   const userStore = useUserStore();
   const userInfo = userStore.getUserInfo;
   const role = ref(userInfo.role);
@@ -61,14 +69,22 @@
   };
   const route = useRoute();
   onMounted(()=>{
+    init();
+  });
+  watch(()=>route.path,()=>{
+    init();
+  })
+  const init = () =>{
     for (let index = 0; index < navbarMenu.menu.length; index++) {
       switch (route.path) {
         case PageEnum.BASE_HOME + navbarMenu.menu[index].path:
           navbarMenu.menuIndex = index;
           break;
+          // default:navbarMenu.menuIndex = 0;
+          // break;
       }
     }
-  });
+  }
   const navbarMenu = reactive({
     menu: [
       { title: '首页', path: '/home' },
@@ -91,19 +107,36 @@
       case 'manage':
         go('/music');
         break;
+      case 'pandas':
+        go('pandas');
+        break;
       case 'logout':
         userStore.confirmLoginOut();
         break;
     }
   };
   const searchValue = ref('');
+  const router = useRouter();
   const onSearch = () => {
-    go('/recommend');
+    if(!searchValue.value){
+      ElMessage.warning({message:'请输入关键词进行搜索！',center:true,offset:100,duration:1500})
+      return;
+    }
+    searchValue.value = searchValue.value.replace(/\s*/g,"");
+    navbarMenu.menuIndex = 0
+    router.push({
+      path:`search`,
+      query:{
+        search:searchValue.value
+      }
+    })
+    
+    
   };
 
   const avatar = computed(() => {
-      const {origin ,avatar} = userInfo;
-      return origin + avatar || headerImg;
+      const { avatar } = userInfo;
+      return avatar || headerImg;
   });
 </script>
 <style lang="less" scoped>

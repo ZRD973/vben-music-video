@@ -10,7 +10,7 @@ const dashboard: AppRouteModule = {
   redirect: '/music/index',
   meta: {
     // hideChildrenInMenu: true,
-    icon: 'simple-icons:about-dot-me',
+    icon: 'dashicons:format-video',
     title: t('视频管理'),
     roles: [RoleEnum.SUPER],
     orderNo: 20,
@@ -22,17 +22,27 @@ const dashboard: AppRouteModule = {
       component: () => import('/@/views/musicManage/index.vue'),
       meta: {
         title: t('音乐视频'),
-        icon: 'simple-icons:about-dot-me',
+        icon: 'akar-icons:video',
         hideMenu: false,
       },
     },
     {
-      path: 'addvideo',
-      name: 'addPage',
-      component: () => import('/@/views/musicManage/addvideo.vue'),
+      path: 'singer',
+      name: 'singerPage',
+      component: () => import('/@/views/musicManage/singer.vue'),
       meta: {
-        title: t('新增视频'),
-        icon: 'simple-icons:about-dot-me',
+        title: t('歌手管理'),
+        icon: 'openmoji:man-singer-medium-light-skin-tone',
+        hideMenu: false,
+      },
+    },
+    {
+      path: 'type',
+      name: 'videoType',
+      component: () => import('/@/views/musicManage/type.vue'),
+      meta: {
+        title: t('类型管理'),
+        icon: 'carbon:type-pattern',
         hideMenu: false,
       },
     },
